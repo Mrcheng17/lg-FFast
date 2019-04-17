@@ -27,12 +27,10 @@
     overflow: auto;
     height: 100vh;
   }
-
-
 </style>
 <template>
   <div class="layout">
-    <Row type="flex">
+    <Row >
       <Sidebar :menuSmall="menuSmall"></Sidebar>
       <div class="ease-in-out" :class="menuSmall?'layout-right-small':'layout-right'">
         <Navbar :toggleClick="toggleClick"></Navbar>

@@ -7,8 +7,10 @@ module.exports = {
   whiteList: ['/login', '/reset'],
   apiPrefix: '/api',
   // devHost: 'http://127.0.0.1:8080',
-  devHost: 'http://39.107.104.190:6060',
-  pubHost: 'http://39.107.104.190:6060',
+  // devHost: 'http://39.107.104.190:6060',
+  // pubHost: 'http://39.107.104.190:6060',
+  devHost: 'http://192.168.0.69:8080',
+  pubHost: 'http://192.168.0.69:8080',
   captchaEnable: true,
   api: {
     userLogin: '/auth/login',

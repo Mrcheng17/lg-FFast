@@ -3,7 +3,6 @@ import http from '@/utils/HttpUtils'
 import merge from 'lodash/merge'
 import * as common from './modules/common'
 
-
 // tips
 // 1. 关闭[业务模块集]拦截, create方法[第2个参数]设置. (默认开启)
 // 2. 关闭[业务模块对象]拦截, 通过模块返回对象中的[isOpen属性, 默认开启]设置. (默认开启)

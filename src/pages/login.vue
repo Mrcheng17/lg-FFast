@@ -167,7 +167,7 @@
                 this.$Message.success('登录成功');
                 OperatorUtils.setBaseData(res.data);
                 this.$router.push({path: '/'});
-//                this.$store.dispatch('setUser', res.data.userData);
+//              this.$store.dispatch('setUser', res.data.userData);
               }
             });
           } else {

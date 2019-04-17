@@ -1,24 +1,16 @@
-<style scoped>
-  .search-more{
-    float: right;
-    margin-bottom: 15px;
-  }
-</style>
-<style>
-</style>
 
 <template>
   <div v-if="tableOptions">
     <!--弹出式编辑框-->
     <template v-if="isPopupEdit">
       <PopupEdit ref="popupEdit"
-                 @on-opened="opened"
-                 @on-setfrom-after="setFromAfter"
-                 :width="tableOptions.editOptions.width"
-                 :dynamic="tableOptions.editOptions.dynamic"
-                 @on-success="editSuccess"
-                 @on-submit-before="submitBefore"
-                 :label-width="tableOptions.editOptions.labelWidth">
+        @on-opened="opened"
+        @on-setfrom-after="setFromAfter"
+        :width="tableOptions.editOptions.width"
+        :dynamic="tableOptions.editOptions.dynamic"
+        @on-success="editSuccess"
+        @on-submit-before="submitBefore"
+        :label-width="tableOptions.editOptions.labelWidth">
         <template slot="append">
           <slot name="popupedit-append"></slot>
         </template>
@@ -26,12 +18,12 @@
     </template>
     <!--搜索筛选-->
     <FormDynamic v-if="showSearch"
-                 ref="searchFrom"
-                 :data="searchExpand?tableOptions.searchDynamic:[tableOptions.searchDynamic[0]]"
-                 :colHeight="45"
-                 :paddingRight="10"
-                 :placeholderLabel="true"
-                 :label-width="tableOptions.searchLabelWidth">
+      ref="searchFrom"
+      :data="searchExpand?tableOptions.searchDynamic:[tableOptions.searchDynamic[0]]"
+      :colHeight="45"
+      :paddingRight="10"
+      :placeholderLabel="true"
+      :label-width="tableOptions.searchLabelWidth">
       <template slot="append">
         <div :span="tableOptions.searchDynamic.length>1?3:1" style="padding: 1px 1px 0 0;"  :class="{'search-more': tableOptions.searchDynamic.length>1}">
           <i-button type="ghost" icon="ios-search" @click="search">查询</i-button>
@@ -45,20 +37,20 @@
 
     <!--数据表格-->
     <DataTable ref="table"
-               :columns="tableOptions.columns"
-               :lazy="tableOptions.lazy"
-               :dataUrl="tableOptions.dataUrl"
-               :pageSize="tableOptions.pageSize"
-               :param="tableOptions.param"
-               :local="tableOptions.local"
-               :height="tableOptions.height"
-               :showPage="tableOptions.showPage"
-               @on-selection-change="selectionChange"
-               @on-row-dblclick="rowDblclick"
-               @on-row-click="rowClick">
+      :columns="tableOptions.columns"
+      :lazy="tableOptions.lazy"
+      :dataUrl="tableOptions.dataUrl"
+      :pageSize="tableOptions.pageSize"
+      :param="tableOptions.param"
+      :local="tableOptions.local"
+      :height="tableOptions.height"
+      :showPage="tableOptions.showPage"
+      @on-selection-change="selectionChange"
+      @on-row-dblclick="rowDblclick"
+      @on-row-click="rowClick">
       <!--工具栏-->
       <template slot="toolbar">
-        <div>
+        <div class="toolbar">
           <template v-if="deferred">
             <!--增删改按钮-->
             <PermsValid :perms-name="createPerms" v-if="tableOptions.createUrl">
@@ -350,3 +342,13 @@
     }
   };
 </script>
+
+<style scoped>
+  .search-more{
+    float: right;
+    margin-bottom: 15px;
+  }
+  .toolbar{
+    margin-bottom: 20px;
+  }
+</style>

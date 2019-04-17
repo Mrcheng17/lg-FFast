@@ -87,6 +87,7 @@
       type="drag"
       :headers="postHeaders"
       :action="uploadUrl"
+      :data="{'upload':'goods'}"
       style="display: inline-block;width:48px;">
       <div style="width: 48px;height:48px;line-height: 58px;">
         <Icon type="camera" size="24"></Icon>
@@ -121,7 +122,7 @@
         photoViewerImg: null,
         photoViewerVisible: false,
         curIndex: 0,
-        postHeaders: {}
+        postHeaders: {},
       };
     },
     methods: {

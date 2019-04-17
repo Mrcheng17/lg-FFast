@@ -1,12 +1,12 @@
-Date.prototype.Format = function (fmt) { //author: meizz
+Date.prototype.Format = function (fmt) { // author: meizz
   var o = {
-    'M+': this.getMonth() + 1, //月份
-    'd+': this.getDate(), //日
-    'h+': this.getHours(), //小时
-    'm+': this.getMinutes(), //分
-    's+': this.getSeconds(), //秒
-    'q+': Math.floor((this.getMonth() + 3) / 3), //季度
-    'S': this.getMilliseconds() //毫秒
+    'M+': this.getMonth() + 1, // 月份
+    'd+': this.getDate(), // 日
+    'h+': this.getHours(), // 小时
+    'm+': this.getMinutes(), // 分
+    's+': this.getSeconds(), // 秒
+    'q+': Math.floor((this.getMonth() + 3) / 3), // 季度
+    'S': this.getMilliseconds() // 毫秒
   };
   if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
   for (var k in o) {
@@ -95,8 +95,8 @@ export default {
     if (typeof obj !== 'object') {
       return;
     } else if (window.JSON) {
-      str = JSON.stringify(obj), //系列化对象
-        newobj = JSON.parse(str); //还原
+      str = JSON.stringify(obj); // 系列化对象
+      newobj = JSON.parse(str); // 还原
     } else {
       for (var i in obj) {
         newobj[i] = typeof obj[i] === 'object' ? cloneObj(obj[i]) : obj[i];

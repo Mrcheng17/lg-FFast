@@ -78,16 +78,16 @@
             <!--选择框-->
             <template v-else-if="item.type==='select'">
               <DataSelect v-model="fromData[item.name]"
-                          :data="item.data"
-                          :dict="item.dict"
-                          :param="item.param"
-                          :disabled="item.disabled"
-                          :dataUrl="item.dataUrl"
-                          :valField="item.valField"
-                          :textField="item.textField"
-                          :placeholder="getPlaceholder(item)"
-                          @on-change="(val)=>{if(item.onChange!=null){item.onChange(val,fromData,mData)}}"
-                          :multiple="item.multiple">
+                :data="item.data"
+                :dict="item.dict"
+                :param="item.param"
+                :disabled="item.disabled"
+                :dataUrl="item.dataUrl"
+                :valField="item.valField"
+                :textField="item.textField"
+                :placeholder="getPlaceholder(item)"
+                @on-change="(val)=>{if(item.onChange!=null){item.onChange(val,fromData,mData)}}"
+                :multiple="item.multiple">
               </DataSelect>
             </template>
             <!--时间选择器-->
@@ -208,7 +208,8 @@
                          :param="item.param"
                          :max="item.max"
                          :disabled="item.disabled"
-                         :dataUrl="item.dataUrl">
+                         :dataUrl="item.dataUrl"
+                         >
               </ImgUpload>
             </template>
 

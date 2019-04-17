@@ -62,14 +62,11 @@ router.beforeEach((to, from, next) => {
     }
   }
 });
-
-
 router.afterEach(transition => {
   store.dispatch('showLoading', false);
   document.title = config.name + " - " + transition.name;
   NProgress.done()
 });
-
 
 // 自动设置语言
 const navLang = navigator.language

@@ -1,7 +1,7 @@
 const loginData = {
   'success': true,
   'data': {
-    'menuData': [{'id': 17, 'name': '用户管理', 'icon': '', 'url': '/user', 'parentId': 1}, {
+    'menuData': [{'id': 17, 'name': '类别管理', 'icon': '', 'url': '/type', 'parentId': 1}, {
       'id': 1,
       'name': '系统管理',
       'icon': 'gear-b',

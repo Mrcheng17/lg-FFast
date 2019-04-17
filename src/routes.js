@@ -25,6 +25,10 @@ const CrudTreePage = resolve => require(['pages/example/CrudTreePage'], resolve)
 const PermsValidPage = resolve => require(['pages/example/PermsValidPage'], resolve)
 const DataSelectPage = resolve => require(['pages/example/DataSelectPage'], resolve);
 
+const CategoryPage = resolve => require(['pages/store/category'], resolve);
+const BrandPage = resolve => require(['pages/store/brand'], resolve);
+const GoodsPage = resolve => require(['pages/store/goods'], resolve);
+
 const routes = [
   {
     path: '/',
@@ -59,7 +63,12 @@ const routes = [
       {path: '/example/crudTable', component: CrudTablePage, name: 'CrudTablePage'},
       {path: '/example/crudTree', component: CrudTreePage, name: 'CrudTreePage'},
       {path: '/example/permsValid', component: PermsValidPage, name: 'PermsValidPage'},
-      {path: '/example/dataSelect', component: DataSelectPage, name: 'DataSelectPage'}
+      {path: '/example/dataSelect', component: DataSelectPage, name: 'DataSelectPage'},
+
+      // 商城管理
+      {path: '/category', component: CategoryPage, name: 'category'},
+      {path: '/brand', component: BrandPage, name: 'brand'},
+      {path: '/goods', component: GoodsPage, name: 'goods'}
     ]
   },
   {

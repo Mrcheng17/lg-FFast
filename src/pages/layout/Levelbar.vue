@@ -27,17 +27,17 @@
 
   <row class="levelbar-row">
     <Breadcrumb class="levelbar-breadcrumb" separator="/">
-      <Breadcrumb-item v-for="(item,index) in levelList" :key="item.name" :href="item.url">
+      <Breadcrumb-item v-for="(item,index) in levelList" :key="index" :href="item.url">
         <Icon :type="item.icon" v-if="item.icon"></Icon>
         {{item.name}}
       </Breadcrumb-item>
     </Breadcrumb>
     <div v-if="showTabs" class="levelbar-tabs">
-      <template v-if="pathList!=null && pathList.length>1" v-for="(item, index) in pathList">
+      <template v-if="pathList!=null && pathList.length>1" v-for="(item, index) in pathList" >
         <Tag
+          :key="index"
           @click.native="tagClick(item.url)"
           :closable="index==hoverIndex"
-          :type="item.url==curPath ?'':'border'"
           :color="item.url==curPath ?'#5c6b77':''"
           @mouseleave.native="()=>{setHover(null)}"
           @mouseenter.native="()=>{if(item.url!=curPath){setHover(index)}}"

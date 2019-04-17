@@ -1,3 +1,78 @@
+<template>
+  <div class="ease-in-out layout-menu-left" :class="{'layout-menu-left-small': menuSmall && !menuHover}"
+       v-on:mouseleave="()=>{setMenuHover(false)}" v-on:mouseenter="()=>{setMenuHover(true)}">
+    <i-menu theme="dark" width="auto" :accordion="true" :active-name="activeName" :open-names="openNames" ref="menu">
+      <div class="layout-logo-left"></div>
+      <Submenu v-for="item in menuData" :name="item.id" :key="item.id">
+        <template slot="title">
+          <Icon :type="item.icon"></Icon>
+          <span>{{item.title}}</span>
+        </template>
+        <router-link v-for="childrenItem in item.children" :to="childrenItem.url" :key="childrenItem.id">
+          <MenuItem :name="childrenItem.id" :key="childrenItem.id">
+            <Icon :type="childrenItem.icon" v-show="childrenItem.icon"></Icon>
+            <span>{{childrenItem.title}}</span>
+          </MenuItem>
+        </router-link>
+      </Submenu>
+    </i-menu>
+  </div>
+</template>
+
+<script>
+import common from '@/utils/common';
+export default {
+  name: 'sidebar',
+  props: ['menuSmall'],
+  data () {
+    return {
+      menuHover: false,
+      menuData: null,
+      activeName: '',
+      openNames: []
+    };
+  },
+  created: function () {
+    this.menuData = common.constructTree(OperatorUtils.getMenuData(), 'name');
+    this.updateCurMenu();
+  },
+  computed: {},
+  methods: {
+    setMenuHover (hover) {
+      if (this.menuSmall) {
+        this.menuHover = hover;
+      }
+    },
+    getMenu (path) {
+      let menu = OperatorUtils.getMenuData();
+      for (let i = 0; i <= menu.length; i++) {
+        if (menu[i] != null && menu[i].url == path) {
+          return menu[i];
+        }
+      }
+    },
+    updateCurMenu () {
+      let curMenu = this.getMenu(this.$router.currentRoute.path);
+      if (curMenu != null) {
+        this.activeName = curMenu.id;
+        this.openNames = [curMenu.parentId];
+        this.$nextTick(() => {
+          this.$refs['menu'].updateOpened();
+        });
+      } else {
+        this.activeName = '';
+      }
+    }
+  },
+  watch: {
+    $route () {
+      this.updateCurMenu();
+    }
+  },
+  components: {}
+};
+</script>
+
 <style rel="stylesheet/scss" lang="scss" scoped>
   $sidebarWidth: 200px;
   $sidebarSmallWidth: 42px;
@@ -110,81 +185,3 @@
     width: 200px;
   }
 </style>
-
-<template>
-  <div class="ease-in-out layout-menu-left" :class="{'layout-menu-left-small': menuSmall && !menuHover}"
-       v-on:mouseleave="()=>{setMenuHover(false)}" v-on:mouseenter="()=>{setMenuHover(true)}">
-    <i-menu theme="dark" width="auto" :accordion="true" :active-name="activeName" :open-names="openNames" ref="menu">
-      <div class="layout-logo-left"></div>
-      <Submenu v-for="item in menuData" :name="item.id" :key="item.id">
-        <template slot="title">
-          <Icon :type="item.icon"></Icon>
-          <span>{{item.title}}</span>
-        </template>
-        <router-link v-for="childrenItem in item.children" :to="childrenItem.url" :key="childrenItem.id">
-          <MenuItem :name="childrenItem.id" :key="childrenItem.id">
-            <Icon :type="childrenItem.icon" v-show="childrenItem.icon"></Icon>
-            <span>{{childrenItem.title}}</span>
-          </MenuItem>
-        </router-link>
-      </Submenu>
-    </i-menu>
-  </div>
-</template>
-
-
-<script>
-
-  import common from '@/utils/common';
-
-  export default {
-    name: 'sidebar',
-    props: ['menuSmall'],
-    data () {
-      return {
-        menuHover: false,
-        menuData: null,
-        activeName: '',
-        openNames: []
-      };
-    },
-    created: function () {
-      this.menuData = common.constructTree(OperatorUtils.getMenuData(), 'name');
-      this.updateCurMenu();
-    },
-    computed: {},
-    methods: {
-      setMenuHover (hover) {
-        if (this.menuSmall) {
-          this.menuHover = hover;
-        }
-      },
-      getMenu (path) {
-        let menu = OperatorUtils.getMenuData();
-        for (let i = 0; i <= menu.length; i++) {
-          if (menu[i] != null && menu[i].url == path) {
-            return menu[i];
-          }
-        }
-      },
-      updateCurMenu () {
-        let curMenu = this.getMenu(this.$router.currentRoute.path);
-        if (curMenu != null) {
-          this.activeName = curMenu.id;
-          this.openNames = [curMenu.parentId];
-          this.$nextTick(() => {
-            this.$refs['menu'].updateOpened();
-          });
-        } else {
-          this.activeName = '';
-        }
-      }
-    },
-    watch: {
-      $route () {
-        this.updateCurMenu();
-      }
-    },
-    components: {}
-  };
-</script>
